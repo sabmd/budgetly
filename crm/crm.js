@@ -433,7 +433,8 @@ function ticketDrawer(t) {
       <div class="two"><label>Category<select name="category">${options(Object.keys(CATEGORIES), t.category, CATEGORIES)}</select></label>
         <label>Priority<select name="priority">${options(['low', 'normal', 'high'], t.priority)}</select></label></div>
       <label>Status<select name="status">${options(['open', 'waiting', 'resolved'], t.status, { open: 'Open', waiting: 'Waiting on user', resolved: 'Resolved' })}</select></label>
-      <label>Your reply or internal notes<textarea name="reply" maxlength="4000">${esc(t.reply)}</textarea></label>
+      <label>Reply to the user<textarea name="reply" maxlength="4000">${esc(t.reply)}</textarea>
+        <span class="small muted" style="font-weight:400">${t.user_id ? 'Shown to them in the Budgetly app under Help &amp; feedback once you save. Don’t put internal notes here.' : 'Not linked to an app account, so send it with Email reply.'}</span></label>
       <div class="row"><button class="btn" type="submit">${isNew ? 'Add request' : 'Save'}</button>
         ${!isNew && t.email ? `<a class="btn btn-light" id="mail-reply" href="#">Email reply</a>` : ''}
         ${!isNew ? '<button class="btn btn-light" type="button" id="ticket-delete">Delete</button>' : ''}</div>

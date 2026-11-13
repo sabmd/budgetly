@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Budgetly CRM</title>
+  <link rel="icon" href="../icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="crm.css">
+</head>
+<body>
+  <!-- Sign-in -->
+  <section id="login" class="login" hidden>
+    <div class="login-card">
+      <img src="../icon.png" alt="" class="login-logo">
+      <h1>Budgetly CRM</h1>
+      <p class="muted">Sign in with your Budgetly admin account.</p>
+      <button id="google" class="btn btn-light" type="button">Continue with Google</button>
+      <div class="or"><span>or</span></div>
+      <form id="login-form">
+        <label>Email<input id="login-email" type="email" autocomplete="username" required></label>
+        <label>Password<input id="login-password" type="password" autocomplete="current-password" required></label>
+        <button class="btn" type="submit">Sign in</button>
+      </form>
+      <p id="login-error" class="error" role="alert"></p>
+    </div>
+  </section>
+
+  <!-- Signed in but not an admin -->
+  <section id="denied" class="login" hidden>
+    <div class="login-card">
+      <h1>No access</h1>
+      <p class="muted"><span id="denied-email"></span> isn't a Budgetly CRM admin.</p>
+      <button class="btn btn-light" data-signout type="button">Sign out</button>
+    </div>
+  </section>
+
+  <!-- App -->
+  <div id="app" class="app" hidden>
+    <aside class="side">
+      <div class="brand"><img src="../icon.png" alt=""><span>Budgetly <b>CRM</b></span></div>
+      <nav id="nav">
+        <a href="#overview" data-view="overview">Overview</a>
+        <a href="#users" data-view="users">Users</a>
+        <a href="#testers" data-view="testers">Testers</a>
+        <a href="#support" data-view="support">Support <span class="badge" id="nav-tickets" hidden></span></a>
+        <a href="#pipeline" data-view="pipeline">Pipeline</a>
+      </nav>
+      <div class="side-foot">
+        <span id="me" class="muted small"></span>
+        <button class="link" data-signout type="button">Sign out</button>
+      </div>
+    </aside>
+    <main id="main" class="main" tabindex="-1"></main>
+  </div>
+
+  <!-- Side panel for a contact, user or ticket -->
+  <div id="drawer-backdrop" class="backdrop" hidden></div>
+  <aside id="drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
+    <header class="drawer-head">
+      <h2 id="drawer-title"></h2>
+      <button class="icon-btn" id="drawer-close" type="button" aria-label="Close">✕</button>
+    </header>
+    <div id="drawer-body" class="drawer-body"></div>
+  </aside>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="crm.js"></script>
+</body>
+</html>

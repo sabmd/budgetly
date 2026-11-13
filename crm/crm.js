@@ -539,7 +539,7 @@ $('#google').onclick = async () => {
 };
 $$('[data-signout]').forEach((b) => (b.onclick = async () => { await sb.auth.signOut(); cache.users = cache.contacts = cache.tickets = null; show('login'); }));
 
-let started = null;
+let started; // undefined until the first auth event, so a signed-out first visit still shows sign-in
 sb.auth.onAuthStateChange((event, session) => {
   // Start once per signed-in user; token refreshes don't redraw the page.
   const uid = session?.user.id ?? null;
